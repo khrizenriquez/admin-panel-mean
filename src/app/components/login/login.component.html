@@ -7,16 +7,22 @@
         <!-- Header -->
         <!-- Body -->
         <div class="card-body">
-            <form action="">
+            <form action="" [formGroup]="loginForm">
                 <div class="row">
                     <div class="col-xl-12 mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="text" class="form-control" id="email" placeholder="example@example.com">
+                        <input type="text" class="form-control" id="email" placeholder="example@example.com" formControlName="username">
+                        <div class="text-danger" *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">
+                            Email is required
+                        </div>
                     </div>
 
                     <div class="col-xl-12">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="******">
+                        <input type="password" class="form-control" id="password" placeholder="******" formControlName="password">
+                        <div class="text-danger" *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">
+                            Email is required
+                        </div>
                     </div>
                 </div>
             </form>
@@ -24,7 +30,7 @@
         <!-- Body -->
         <!-- Footer -->
         <div class="card-footer">
-            <button class="btn btn-primary flex-end float-end">
+            <button class="btn btn-primary flex-end float-end" (click)="submit()" [disabled]="!this.loginForm.valid">
                 Login
             </button>
         </div>
